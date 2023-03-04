@@ -1,0 +1,14 @@
+from tkinter import Tk,messagebox,Label,Frame,Entry
+
+def mostrarMensaje():
+    messagebox.showinfo("Aviso"," Este mensaje es para avisar algo")
+    messagebox.showerror("Error: ","Todo fallo con exito")
+    email = email_entry.get()
+    password = password_entry.get()
+#mensaje a pantalla
+    if email == "" or password == "":
+        message_label.config(text="Por favor ingrese su correo y contraseña")
+    elif email == valEmail and password == valPass:
+       messagebox.showinfo("Es correcto", "Bienvenido")
+    else:
+       print(messagebox.showerror("Error: ","Ingrese la contraseña o correo correctos"))

@@ -1,0 +1,55 @@
+import tkinter as tk
+from tkinter import messagebox
+
+class Usuario:
+    def __init__(self, correo, contrasena):
+        self.correo = correo
+        self.contrasena = contrasena
+
+class Login:
+    def __init__(self, master):
+        self.master = master
+        master.title("Login")
+        
+        self.label_correo = tk.Label(master, text="Correo electrónico:")
+        self.label_correo.pack()
+        
+        self.entry_correo = tk.Entry(master)
+        self.entry_correo.pack()
+        
+        self.label_contrasena = tk.Label(master, text="Contraseña:")
+        self.label_contrasena.pack()
+        
+        self.entry_contrasena = tk.Entry(master, show="*")
+        self.entry_contrasena.pack()
+        
+        self.button_login = tk.Button(master, text="Iniciar sesión", command=self.iniciar_sesion)
+        self.button_login.pack()
+    
+    def iniciar_sesion(self):
+        correo = self.entry_correo.get()
+        contrasena = self.entry_contrasena.get()
+        
+        # Validar que el correo y la contraseña no estén vacíos
+        if correo == "" or contrasena == "":
+            messagebox.showerror("Error", "El correo y la contraseña son requeridos.")
+            return
+        
+        # Validar si el usuario está en la lista de usuarios permitidos
+        usuarios_permitidos = [Usuario("usuario1@gmail.com", "contrasena1"), 
+                               Usuario("usuario2@gmail.com", "contrasena2")]
+        usuario_valido = False
+        for usuario in usuarios_permitidos:
+            if usuario.correo == correo and usuario.contrasena == contrasena:
+                usuario_valido = True
+                break
+        
+        # Mostrar un mensaje de bienvenida o de error según corresponda
+        if usuario_valido:
+            messagebox.showinfo("Bienvenido", f"Bienvenido {correo}!")
+        else:
+            messagebox.showerror("Error", "El correo o la contraseña son incorrectos.")
+
+root = tk.Tk()
+login = Login(root)
+root.mainloop()

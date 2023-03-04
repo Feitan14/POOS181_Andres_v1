@@ -1,0 +1,33 @@
+
+from tkinter import messagebox,Tk,Button,Frame
+
+def mostrarMensaje():
+    messagebox.showinfo("Aviso"," El correo es correcto")
+    if email == "" or password == "":
+        messagebox.showinfo(text="Por favor ingrese su correo y contraseña")
+    elif email == "andy@gmail.com" and password == a:
+        messagebox.showinfo("¡Bienvenido!")
+    else:
+        messagebox.showerror("Error: ","Todo fallo con exito")
+
+#5. Funcion para agregar botones
+def agregarBoton():
+    boton1.config(text="+", bg="green",fg="black")
+    botonNuevo = Button(sec1, text="Boton Nuevo")
+    botonNuevo.pack()
+
+#1. instanaciamos un objeto ventana
+ventana = Tk()
+ventana.title("practica 12: Frames")
+ventana.geometry("600x400")
+
+#2. Definimos secciones de la ventana
+sec1=Frame(ventana,bg="#39FF33")
+sec1.pack(expand=True,fill='both')
+
+#3. Botones
+boton1=Button(sec1,text="boton azul",fg="blue",bg="black",command=mostrarMensaje)
+boton1.place(x=60, y=60)
+
+#main de ejecucion de la ventana
+ventana.mainloop()
