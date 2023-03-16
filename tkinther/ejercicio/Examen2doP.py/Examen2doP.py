@@ -1,21 +1,28 @@
 import tkinter as tk
+from tkinter import Button, messagebox
 import random
 
 # Función para generar la matrícula
+# #agregamos los mensajes a pantalla
 def generar_matricula():
     nombre = nombre_entry.get()
     apellido_paterno = ap_entry.get()
     apellido_materno = am_entry.get()
     fecha_nacimiento = fn_entry.get()
-    carrera = ca_entry.get()
     a_curso = ac_entry.get()
+    carrera = ca_entry.get()
+    
+    #matricula = + nombre[:1] + apellido_paterno[:2] + apellido_materno[:2] + fecha_nacimiento[-2:] + a_curso[:-2] + carrera[:3] 
+   
+    matricula = nombre[:1] + apellido_paterno[:2] + apellido_materno[:2] + fecha_nacimiento[-2:] +a_curso[-2:] + carrera[:3]
 
-    matricula = + nombre[:1] + apellido_paterno[:2] + apellido_materno[:2] + fecha_nacimiento[-2:] + a_curso[:-2] + carrera[:3] 
-
-    # Add 3 random numbers to the matricula
-    matricula += str(random.randint(0, 9)) + str(random.randint(0, 9)) + str(random.randint(0, 9))
+    # aqui agregaremos 2 numeros random en la matricula
+    matricula += str(random.randint(0, 9)) + str(random.randint(0, 9)) 
     matricula_label.config(text="Tu matrícula es: " + matricula)
 
+#impresion de boton
+def mostrarm():
+    messagebox.showinfo('tu matricula es')
 # Creación de la ventana
 ventana = tk.Tk()
 ventana.title("Generador de Matrícula")
@@ -42,7 +49,7 @@ ac_entry = tk.Entry(ventana)
 
 generar_button = tk.Button(ventana, text="Generar Matrícula", command=generar_matricula)
 
-matricula_label = tk.Label(ventana, text="Tu matrícula aparecerá aquí")
+matricula_label = tk.Label(ventana, text="Tu matrícula aparecerá aquí" )
 
 # empezamos a realizar las posiciones de los widgets
 nombre_label.grid(row=0, column=0)
@@ -66,9 +73,7 @@ ac_entry.grid(row=5, column=1)
 #Generamos un boton para generar la matricula
 generar_button.grid(row=6, column=1)
 
-
-#imprimimos la matricula y la posicionamos
 matricula_label.grid(row=6, column=0, columnspan=2)
-
+#imprimimos la matricula y la posicionamos
 #main de ejecucion de la ventana
 ventana.mainloop()
